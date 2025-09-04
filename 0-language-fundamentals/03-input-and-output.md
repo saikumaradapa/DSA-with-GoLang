@@ -49,19 +49,26 @@ fmt.Printf("Name: %s, Roll No: %d\n", name, rollno)
 
 ### 1️⃣ `fmt.Scan()`
 - Reads space-separated input values.
+- Ignores newline and keeps waiting until all variables are filled.
 ```go
 var name string
 var rollno int
-fmt.Scan(&name, &rollno) // Example Input: Sai Kumar 21
+fmt.Scan(&name, &rollno) 
+// Example Input: Sai-Kumar (Enter) 21
 fmt.Println("Name:", name, "Roll No:", rollno)
+// Output : Name: Sai-Kumar Roll No: 21
 ```
 
 ### 2️⃣ `fmt.Scanln()`
 - Reads input until a newline (Enter) is encountered.
+- If fewer values are provided before newline, it errors out.
 ```go
 var name string
-fmt.Scanln(&name) // Example Input: Sai Kumar
-fmt.Println("Name:", name)
+var rollno int
+fmt.Scanln(&name, &rollno) 
+// Example Input: Sai-Kumar (Enter) 21
+fmt.Println("Name:", name, "Roll No:", rollno)
+// Output : Name: Sai-Kumar Roll No: 21
 ```
 
 ### 3️⃣ `fmt.Scanf()` (Formatted Input)
@@ -69,7 +76,7 @@ fmt.Println("Name:", name)
 ```go
 var name string
 var rollno int
-fmt.Scanf("%s %d", &name, &rollno) // Example Input: Sai Kumar 21
+fmt.Scanf("%s %d", &name, &rollno) // Example Input: Sai-Kumar 21
 fmt.Println("Name:", name, "Roll No:", rollno)
 ```
 
@@ -85,11 +92,8 @@ func main() {
 	var name string
 	var rollno int
 
-	fmt.Print("Enter your name: ")
-	fmt.Scanln(&name)
-
-	fmt.Print("Enter your roll number: ")
-	fmt.Scan(&rollno)
+	fmt.Print("Enter your name and rollno (space separated): ")
+	fmt.Scan(&name, &rollno) // ✅ use Scan, not Scanln
 
 	fmt.Printf("Hello %s, your roll number is %d.\n", name, rollno)
 }
